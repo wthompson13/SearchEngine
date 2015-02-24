@@ -1,6 +1,7 @@
 // Git collaborative COP-2805 (Java II) project.
+/***** David Blocher's branch version *****/
 
-package src.mypkg;
+package search;
 
 /**
  * COP-2805 - Project 3: Creating the architecture of a search engine
