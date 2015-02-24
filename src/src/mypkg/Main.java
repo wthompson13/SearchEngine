@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String[] args) {
 	//public void createControls(Composite parent){
 		
-        System.out.println("Testing Testing William's Branch"); // Display the string.
+        System.out.println("Testing William's Branch"); // Display the string.
         
     }
 }
