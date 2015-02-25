@@ -14,7 +14,7 @@ package src.mypkg;
  */
 
 public class Main {
-	//@PostConstruct
+
 	public static void main(String[] args) {
 	//public void createControls(Composite parent){
 		
