@@ -1,20 +1,21 @@
 package src.mypkg;
 
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+//empty border needed for "absolute" layout. This should be changed if anyone can get layouts inside layouts to work. I could not due to unrecognized errors. 
+import javax.swing.border.EmptyBorder;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+//import java.awt.font.*;
+/*
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
-
-import java.awt.GridLayout;
-
-import javax.swing.*;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 import javax.swing.JToolBar;
@@ -30,12 +31,14 @@ import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.Color;
+*/
 
 public class UsingWindowBuilderForSwing extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField userInputTextField;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -122,8 +125,17 @@ public class UsingWindowBuilderForSwing extends JFrame {
 	
 		 //Create "File Select" button
 		 JButton btnFileSelect = new JButton("File Select");
+		 btnFileSelect.setAction(action);
 		 btnFileSelect.setBounds(337, 93, 92, 53);
 		 contentPane.add(btnFileSelect);
+		 btnFileSelect.addActionListener(new ActionListener() {
+			 	
+			 public void actionPerformed(ActionEvent arg0) {
+		 		IndexMaintenanceFrame s = new IndexMaintenanceFrame();
+		 		s.setVisible(true);
+		 	}
+		 });
+		 
 		 
 		 //Create "About" button
 		 JButton btnAbout = new JButton("About");
@@ -157,5 +169,13 @@ public class UsingWindowBuilderForSwing extends JFrame {
 		
 		
 		
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }

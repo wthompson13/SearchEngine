@@ -5,9 +5,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class IndexMaintenanceFrame extends JFrame {
+	
 
 	private JPanel contentPane;
 
@@ -26,17 +31,27 @@ public class IndexMaintenanceFrame extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	
 	public IndexMaintenanceFrame() {
+		
+		//Create JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 579, 516);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnClose = new JButton("Close");
+		contentPane.add(btnClose);
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		getContentPane().add(btnClose, BorderLayout.SOUTH);
 	}
-
+	
 }
+
