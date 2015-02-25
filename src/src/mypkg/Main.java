@@ -11,7 +11,7 @@ package src.mypkg;
 /**
  * COP-2805 - Project 3: Creating the architecture of a search engine
  * @author William Thompson, David Blocher, Alex Peterson
- */
+ */ 
 
 public class Main {
 
