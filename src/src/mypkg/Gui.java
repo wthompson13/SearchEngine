@@ -20,6 +20,10 @@ public class Gui extends java.awt.Frame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jFrame1 = new javax.swing.JFrame();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -35,6 +39,14 @@ public class Gui extends java.awt.Frame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jInternalFrame1.setTitle("About");
+        jInternalFrame1.setVisible(true);
+
+        jButton1.setText("OK");
+        jInternalFrame1.getContentPane().add(jButton1, java.awt.BorderLayout.PAGE_END);
+
+        jFrame1.getContentPane().add(jInternalFrame1, java.awt.BorderLayout.CENTER);
 
         setTitle("Search Engine 1.0");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -124,12 +136,16 @@ public class Gui extends java.awt.Frame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
