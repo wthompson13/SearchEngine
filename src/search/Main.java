@@ -1,5 +1,5 @@
 // Git collaborative COP-2805 (Java II) project.
-/*--- David Blocher's branch version ---*/
+// Alex Peterson, William Thompson, and David Blocher
 
 package search;
 
