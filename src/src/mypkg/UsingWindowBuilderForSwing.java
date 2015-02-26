@@ -62,7 +62,9 @@ public class UsingWindowBuilderForSwing extends JFrame {
 	 * Create the frame.
 	 */
 	public UsingWindowBuilderForSwing() {
-		
+		//Due to emptyBorder layout, disabling resizing keeps graphical appeal over user preference. 
+		setResizable(false);
+		//Declare local variables
 		int indexedFilesCount = 0;
 		
 		//Create JFrame
@@ -101,17 +103,19 @@ public class UsingWindowBuilderForSwing extends JFrame {
 		 group.add(searchAnyButton);
 		 group.add(searchEXACTbutton);
 		 
+		 //Show text in front of user search textbox
 		 JLabel lblSearchTerm = new JLabel("Search Term:");
 		 lblSearchTerm.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		 lblSearchTerm.setBounds(36, 58, 92, 23);
 		 contentPane.add(lblSearchTerm);
 		 
+		 //Show "indexed Files" + variable indexedFilesCount to show imported file count
 		 JLabel lblIndexedFileCount = new JLabel("Indexed Files: " + indexedFilesCount);
 		 lblIndexedFileCount.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		 lblIndexedFileCount.setBounds(222, 156, 187, 23);
 		 contentPane.add(lblIndexedFileCount);
 
-		 //create search textField
+		 //create search textField for the user to type search terms into
 		 userInputTextField = new JTextField();
 		 userInputTextField.setBounds(125, 61, 402, 20);
 		 contentPane.add(userInputTextField);
@@ -128,8 +132,9 @@ public class UsingWindowBuilderForSwing extends JFrame {
 		 btnFileSelect.setAction(action);
 		 btnFileSelect.setBounds(337, 93, 92, 53);
 		 contentPane.add(btnFileSelect);
+		 
+		 //Open IndexMaintenanceFrame.java on click
 		 btnFileSelect.addActionListener(new ActionListener() {
-			 	
 			 public void actionPerformed(ActionEvent arg0) {
 		 		IndexMaintenanceFrame s = new IndexMaintenanceFrame();
 		 		s.setVisible(true);
@@ -154,7 +159,7 @@ public class UsingWindowBuilderForSwing extends JFrame {
 		 JLabel lblSimpleSearch = new JLabel("Simple Search");
 		 lblSimpleSearch.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		 panel.add(lblSimpleSearch);
-		 
+		 //Create search result display area. Cannot be edited by user.
 		 JTextArea textArea = new JTextArea();
 		 textArea.setEditable(false);
 		 textArea.setBounds(10, 185, 563, 266);
@@ -172,8 +177,8 @@ public class UsingWindowBuilderForSwing extends JFrame {
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
+			putValue(NAME, "Import");
+			putValue(SHORT_DESCRIPTION, "Click to open form to import files.");
 		}
 		public void actionPerformed(ActionEvent e) {
 		}

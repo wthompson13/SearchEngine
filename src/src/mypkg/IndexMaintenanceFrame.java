@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSplitPane;
 
 public class IndexMaintenanceFrame extends JFrame {
 	
@@ -36,8 +37,8 @@ public class IndexMaintenanceFrame extends JFrame {
 	public IndexMaintenanceFrame() {
 		
 		//Create JFrame
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 579, 516);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);//Use HIDE to prevent other form from closing
+		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,6 +52,8 @@ public class IndexMaintenanceFrame extends JFrame {
 			}
 		});
 		getContentPane().add(btnClose, BorderLayout.SOUTH);
+		
+		
 	}
 	
 }
