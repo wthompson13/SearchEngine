@@ -18,7 +18,12 @@ public class ParsingData {
 
     
     public static void main(String[] args) {
-       
+       textFile01 /** For the text files do we pick any word?
+       textFile02
+       textFile03
+       * 
+       */
     }
+    
     
 }
