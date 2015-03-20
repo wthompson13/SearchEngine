@@ -11,6 +11,8 @@ package parsing.data;
  * David Blocher: Searching won't be implemented until the next part. What we
  * need right now is the ability to extract words from the text files to be
  * used for making the index that we'll later use to do the searching.
+ * I realize that's a fairly opaque explanation, so call or shoot me an email
+ * and I'll explain in further detail.
  */
 import java.io.IOException;
 import java.nio.file.Path;
