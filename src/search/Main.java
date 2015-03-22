@@ -159,12 +159,7 @@ public class Main{
       JButton btnAddFile = new JButton("Add File");
       btnAddFile.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
-            JFileChooser chooser = new JFileChooser();
-            int result = chooser.showOpenDialog(null);
-            
-            if(result == JFileChooser.APPROVE_OPTION) {
-               // code to get file goes here
-            }
+            ParsingData.addFile();
          }
       });
       bottomPanel.add(btnAddFile);
