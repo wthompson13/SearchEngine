@@ -15,7 +15,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
-import javax.swing.JFileChooser;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
