@@ -8,26 +8,33 @@ package search;
  * the word thing for the txt files. Do we pick any words to search for in the
  * txt file??
  */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+
 import javax.swing.JFileChooser;
 
 public class ParsingData {
     
 	static String indexLocation = System.getProperty("user.dir") + "\\SearchIndex.txt";
-    
+	
+	File SearchIndex = new File("SearchIndex.txt");
+	
 	// Read a file and update the index
 	static void addFile() {
 		File file = null;
 		
 		// select and open file, else cancel
-		JFileChooser fileChooser = new JFileChooser();
+		JFileChooser fileChooser = new JFileChooser(); 
+		//Set JFileFilter?
 		if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			file = fileChooser.getSelectedFile();
+			//Add file to list of indexed files(needs to check if exists already)
+			try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("SelectedFiles.txt", true)))) {
+			    out.println(file.getName());
+			}catch (IOException e) {
+			    //Exception handling
+			}
+			
 		} else {
 			return;
 		}
@@ -36,6 +43,7 @@ public class ParsingData {
 		FileReader reader;
 		try {
 			reader = new FileReader(file);
+			System.out.println("reading File"); //debugging
 		} catch (FileNotFoundException e) {
 			// add error dialog
 			return;
@@ -74,6 +82,12 @@ public class ParsingData {
 		ArrayList<String> index = readIndex();
 		
 		// write to index file
+		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("SearchIndex.txt", true)))) {
+		    out.println(index.toString() + "  " + wordList.toString());
+			//out.println(wordList.toString());
+		}catch (IOException e) {
+		    //Exception handling
+		}
 	}
 	
 	// Remove a file from the index

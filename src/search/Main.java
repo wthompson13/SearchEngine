@@ -5,6 +5,12 @@ package search;
 
 import java.awt.EventQueue;
 import java.awt.Point;
+import java.util.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.*;
+import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 
@@ -54,11 +60,34 @@ public class Main{
    /**
     * Launch the application.
     */
-   public static void main(String[] args) {
+   public static void main(String[] args) {//start of main
+	   //Create new files?
+	   try {
+		   //create a file named "SelectedFiles.txt" in the current working directory
+		   File InverseFile = new File("SelectedFiles.txt");
+		   if ( InverseFile.createNewFile() ) {
+		      System.out.println("Success! File did not previously exist");
+		   } else {
+		      System.out.println("Failure! File already exists");
+		   }
+		} catch ( IOException ioe ) { ioe.printStackTrace(); }
+	 /*  checked for in ParsingData.addfile    
+	   try {
+		   //create a file named "SearchIndex.txt" in the current working directory
+		   File SearchFile = new File("SearchIndex.txt");
+		   if ( SearchFile.createNewFile() ) {
+		      System.out.println("Success! File did not previously exist");
+		   } else {
+		      System.out.println("Failure! File already exists");
+		   }
+		} catch ( IOException ioe ) { ioe.printStackTrace(); }
+	   */    
+	       
+	       
       EventQueue.invokeLater(new Runnable() {
          public void run() {
             try {
-               Main window = new Main();
+               Main window = new Main();//create new window from Main
                window.frame.setVisible(true);
             } catch (Exception e) {
                e.printStackTrace();
@@ -86,7 +115,7 @@ public class Main{
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.getContentPane().setLayout(new BorderLayout(0, 0));
       
-      // creating file removal dialog
+      //creating file removal dialog
       RemoveFileDialog removeDialog = new RemoveFileDialog();
       
       JPanel northPanel = new JPanel();
@@ -102,7 +131,7 @@ public class Main{
       // Search Type button pop-up menu
       searchTypeMenu = new JPopupMenu();
       topPanel.add(searchTypeMenu);
-      
+      //And search button
       andRadioButton = new JRadioButton("Must have all terms", true);
       andRadioButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
@@ -111,7 +140,7 @@ public class Main{
          }
       });
       searchTypeMenu.add(andRadioButton);
-      
+      //OR search button
       orRadioButton = new JRadioButton("May have any terms");
       orRadioButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
@@ -120,7 +149,7 @@ public class Main{
          }
       });
       searchTypeMenu.add(orRadioButton);
-      
+      //Phrase search button
       phraseRadioButton = new JRadioButton("Exact phrase");
       phraseRadioButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
@@ -129,7 +158,7 @@ public class Main{
          }
       });
       searchTypeMenu.add(phraseRadioButton);
-      
+      //Add radio buttons to 'Search Type' button group (named "group")
       group.add(andRadioButton);
       group.add(orRadioButton);
       group.add(phraseRadioButton);
@@ -138,6 +167,7 @@ public class Main{
       topPanel.add(textField);
       textField.setColumns(50);
       
+      //Search button click actions
       searchButton = new JButton("Search");
       searchButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
@@ -150,15 +180,19 @@ public class Main{
       
       btnSearchType = new JButton("Search Type");
       topPanel.add(btnSearchType);
-      
+      //Set layout for bottom panel
       bottomPanel = new JPanel();
       northPanel.add(bottomPanel, BorderLayout.SOUTH);
       bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-      
+      //Create "Add file" button
       JButton btnAddFile = new JButton("Add File");
+      //Actions for "Add File" button click
       btnAddFile.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
-            ParsingData.addFile();
+            ParsingData.addFile(); //open file browser
+            //what do do with selected .txt
+            
+            
          }
       });
       bottomPanel.add(btnAddFile);
@@ -175,11 +209,17 @@ public class Main{
       btnViewFiles.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
             // put code to get file names here
-            // code below is just for show
-            textArea.setText("C:\\SomeFolder\\SomeFile.txt\nC:\\SomeOtherFolder\\AnotherFile.txt");
+        	 Path path = Paths.get("SelectedFiles.txt");
+             try {
+                 Stream<String> lines = Files.lines(path);
+                 lines.forEach(s -> textArea.append(s + "\n"));
+             } catch (IOException ex) {
+
+             }
          }
       });
       bottomPanel.add(btnViewFiles);
+      //Show dropdown list when "search type" button is clicked
       btnSearchType.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
             Point p = btnSearchType.getLocationOnScreen();
@@ -188,7 +228,7 @@ public class Main{
             searchTypeMenu.setVisible(!searchTypeMenu.isVisible());
          }
       });
-      
+      //Create the center panel
       centerPanel = new JPanel();
       frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
       centerPanel.setLayout(null);
@@ -200,6 +240,7 @@ public class Main{
       centerPanel.add(textArea);
    }
    
+   //
    public class RemoveFileDialog extends JDialog {
 
       private final JPanel contentPanel = new JPanel();
@@ -215,7 +256,7 @@ public class Main{
          contentPanel.setLayout(new BorderLayout(0, 0));
          this.setVisible(false);
          {
-            // some filler to show something int the list
+            // some filler to show something in the list
             String[] files = {"File 1", "File 2", "File 3"};
             
             JList<String> list = new <String>JList(files);
